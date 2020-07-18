@@ -9,6 +9,13 @@ git:
     depth: 3
 script:
     - yarn build
+notifications:
+    email:
+        #Vamos a pasar recipientes para el correo electronico.
+        recipients:
+            - ricardo.ares1989@gmail.com
+        on_success: always
+        on_failure: always
 deploy:
     provider: pages
     skip-cleanup: true
