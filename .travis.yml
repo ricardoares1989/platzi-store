@@ -1,0 +1,29 @@
+language: node_js
+
+#Tenemos la opcion de cache, trabajando sobre las carpetas de node_modules 
+# y los recursos del proyecto.
+cache:
+    directories:
+        - node_modules
+        - ~/.npm
+    node_js:
+        - '12'
+    git:
+        depth: 3
+    script:
+        - yarn build
+    deploy:
+        provider: pages
+        #por que sera github page para las cinfiguraciones de estas.
+        skip_cleanup: true
+        keep_history: true
+        github_token: $GITHUB_TOKEN
+        # creamos una variable de entorno.
+        local-dir: dist/
+        # es la carpeta donde termina el build.
+        target-branch: gh-pages
+        #la rama a la que apunta nuestra rama.
+        commit_message: "Deploy del proyecto"
+        on:
+            branch: master
+            
